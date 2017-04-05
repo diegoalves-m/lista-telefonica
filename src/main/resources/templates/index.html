@@ -7,6 +7,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
         <script type="text/javascript" src="./js/app/app.js"></script>
         <script type="text/javascript" src="./js/app/controllers/listaTelefonicaCtrl.js"></script>
+        <script type="text/javascript" src="./js/app/value/configValue.js"></script>
+        <script type="text/javascript" src="./js/app/filters/nameFilter.js"></script>
     </head>
     <body ng-controller="listaTelefonicaCtrl">
         <div class="jumbotron">
@@ -22,9 +24,9 @@
                     <th>Operadora</th>
                     <th>Data cadastro</th>
                 </tr>
-                <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:{nome: busca}">
+                <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:{nome: busca} | orderBy: 'nome'">
                     <td><input type="checkbox" ng-model="contato.selecionado"/></td>
-                    <td>{{contato.nome}}</td>
+                    <td>{{contato.nome | name}}</td>
                     <td>{{contato.numero}}</td>
                     <td>{{contato.operadora.nome}}</td>
                     <td>{{contato.date.dayOfMonth + '/' + contato.date.monthValue + '/' + contato.date.year }}</td>

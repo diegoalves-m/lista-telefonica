@@ -1,5 +1,5 @@
 
-angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $http) {
+angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope, $http, config) {
 
     $scope.app = "Lista telefonica";
     $scope.message = "";
@@ -9,7 +9,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
     var carregarContatos = function() {
     	$http({
             method: 'GET',
-            url: 'http://localhost:8080/listatelefonica/all'
+            url: config.baseUrl + '/listatelefonica/all'
             }).then(function successCallback(response) {
                 $scope.contatos = response.data;
                 
@@ -28,7 +28,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
     var carregarOperadoras = function() {
         $http({
             method: 'GET',
-            url: 'http://localhost:8080/operadoras'
+            url: config.baseUrl + '/operadoras'
             }).then(function successCallback(response) {
                 $scope.operadoras = response.data;
             }, function errorCallback(response) {
@@ -40,7 +40,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
     $scope.salvar = function (contato) {
         $http({
             method: 'POST',
-            url: 'http://localhost:8080/listatelefonica',
+            url: config.baseUrl + '/listatelefonica',
             data: contato
             }).then(function successCallback(response) {
                 delete $scope.contato;
@@ -57,7 +57,7 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
     			var id = contato.id;
     	    	$http({
     	            method: 'DELETE',
-    	            url: 'http://localhost:8080/listatelefonica/' + id
+    	            url: config.baseUrl + '/listatelefonica/' + id
     	            }).then(function successCallback(response) {
     	                carregarContatos();   
     	            }, function errorCallback(response) {
