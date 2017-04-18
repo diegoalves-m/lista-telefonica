@@ -50,6 +50,10 @@ angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($sc
                 $scope.message = "Servidor indisponivel";
         });
     };
+    
+    $scope.update = function(contato) {
+    	$scope.contato = contato;
+    };
 
     $scope.excluir = function(contatos) {
     	contatos.forEach(function(contato) {

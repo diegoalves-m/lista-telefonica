@@ -23,6 +23,7 @@
                     <th>Telefone</th>
                     <th>Operadora</th>
                     <th>Data cadastro</th>
+                    <th>Editar</th>
                 </tr>
                 <tr ng-class="{selecionado: contato.selecionado}" ng-repeat="contato in contatos | filter:{nome: busca} | orderBy: 'nome'">
                     <td><input type="checkbox" ng-model="contato.selecionado"/></td>
@@ -30,6 +31,7 @@
                     <td>{{contato.numero}}</td>
                     <td>{{contato.operadora.nome}}</td>
                     <td>{{contato.date.dayOfMonth + '/' + contato.date.monthValue + '/' + contato.date.year }}</td>
+                    <td ng-click="update(contato)"><img alt="editar" height="22px" width="22px" src="./images/edit.png"/></td>
                 </tr>
             </table>
             
